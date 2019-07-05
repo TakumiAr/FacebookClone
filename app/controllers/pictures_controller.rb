@@ -2,7 +2,11 @@ class PicturesController < ApplicationController
  before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pictures = Picture.all
+    if current_user.present?
+      @pictures = Picture.all
+      else
+        redirect_to new_user_path, notice: "ログインしてください！"
+    end
   end
 
   def new
@@ -41,8 +45,12 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    @picture.destroy
-    redirect_to pictures_path, notice:"ツイートを削除しました！ "
+    if @picture.user_id == session[:user_id]
+      @picture.destroy
+      redirect_to pictures_path, notice:"ツイートを削除しました！ "
+      else
+        redirect_to pictures_path, notice: "他のユーザーの記事は削除できません！"
+    end
   end
 
   def confirm

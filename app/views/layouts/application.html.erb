@@ -9,17 +9,29 @@
   </head>
 
   <body>
-     <% flash.each do |key, value| %>
-       <%= content_tag(:div, value, class: "#{key}") %>
-     <% end %>
-
-     <% if logged_in? %>
-       ログイン中のユーザー: <b><%= current_user.name%></b>
-       <%= link_to "Profile", user_path(current_user.id) %>
-       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-     <% else %>
-     <% end %>
-
-     <%= yield %>
-   </body>
- </html>
+    <header>
+      <% if logged_in? %>
+        <ul>
+          <li>
+            <%= link_to pic_index_path, class: "logo-link" do %>
+              <!-- <div class="logo"></div> -->
+              <%= image_tag 'logo.png', size:30 %>
+            <% end %>
+          </li>
+          <li>ログイン中のユーザー: <b><%= current_user.name%></li>
+          <li><%= link_to "Profile", user_path(current_user.id) %></li>
+          <li><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+        </ul>
+      <% else %>
+      <%= link_to pic_index_path, class: "logo-link" do %>
+        <!-- <div class="logo"></div> -->
+        <%= image_tag 'logo.png', size:30 %>
+      <% end %>
+      <% end %>
+    </header>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
