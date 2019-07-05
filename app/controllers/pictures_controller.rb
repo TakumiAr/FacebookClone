@@ -26,6 +26,10 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    if @picture.user_id == session[:user_id]
+      else
+        redirect_to pictures_path, notice: "他のユーザーの記事は編集できません！"
+    end
   end
 
   def update
