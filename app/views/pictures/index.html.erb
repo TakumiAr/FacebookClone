@@ -1,22 +1,14 @@
-<p><%= notice %></p>
-<%= link_to 'post', new_picture_path %>
-<table>
-  <tr>
-    <th>ツイート</th>
-    <th>投稿時間</th>
-    <th>ユーザ</th>
-  </tr>
-<% @pictures.each do |picture| %>
-<div class="btn-group" role="group" aria-label="...">
-  <tr>
-    <td><%= picture.content %></td>
-    <td><%= picture.created_at %></td>
-    <td><%= picture.user.name %></td>
-    <td>
-    <td><button type="button" class="btn btn-default"><%= link_to "詳細", picture_path(picture.id) %></button></td>
-    <td><button type="button" class="btn btn-default"><%= link_to "編集", edit_picture_path(picture.id), data: { confirm: '本当に編集しますか？' } %></button></td>
-    <td><button type="button" class="btn btn-default"><%= link_to '削除', picture_path(picture.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></button></td>
-  </tr>
-</div>
+<%= link_to 'post', new_picture_path %><br>
+<% @pictures.reverse_each do |picture| %>
+  <%= picture.user.name %><br>
+  <%= picture.created_at %><br>
+  <%= picture.content %><br>
+  <%= image_tag picture.image.url, width:500 %>
+  <div class="btn-group" role="group" aria-label="...">
+    <table>
+      <td><button type="button" class="btn btn-default"><%= link_to "詳細", picture_path(picture.id) %></button></td>
+      <td><button type="button" class="btn btn-default"><%= link_to "編集", edit_picture_path(picture.id), data: { confirm: '本当に編集しますか？' } %></button></td>
+      <td><button type="button" class="btn btn-default"><%= link_to '削除', picture_path(picture.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></button></td>
+    </table>
+  </div>
 <% end %>
-</table>
