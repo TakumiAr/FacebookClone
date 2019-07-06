@@ -105,8 +105,9 @@ input[type="file"] {
   margin-top: 0;
   height: 38px;
   width: 480px;
-  //background-image: url('facebookclonepicture.png');
-  //background-size: contain;
-  //background-repeat: no-repeat;
-  background-color: black;
+  background-image: image-url('facebookclonepicture.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  opacity: 0;
 }
