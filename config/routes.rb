@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :users
+  resources :users, only: [:new, :show]
   get '/index', to: 'pictures#index'
   post '/pictures', to: 'pictures#confirm'
 end
