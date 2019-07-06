@@ -11,7 +11,7 @@
   <% end %>
   <p class="picture_submit"><%= form.submit "投稿を作成" %></p>
   <div class="picture_content">
-    <p class="picture_content_form"><%= form.text_field :content, placeholder: current_user.name+"さんー今何してる？",html: {id: 'picture_content_form'} %></p>
+    <p class="picture_content_form"><%= form.text_field :content, placeholder: current_user.name+"さんー今なにしてる？",html: {id: 'picture_content_form'} %></p>
   </div>
   <%= image_tag((@picture.image.url), width:480) if @picture.image && @picture.image.url %>
   <div class="picture_image">
